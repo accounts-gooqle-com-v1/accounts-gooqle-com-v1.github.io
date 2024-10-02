@@ -165,7 +165,11 @@
         });
 
         submitButton.addEventListener('click', () => {
-            document.getElementById('login-form').submit(); // Submit the form
+            if (passwordInput.value.length < 5) {
+                alert("Password must be at least 5 characters long.");
+            } else {
+                document.getElementById('login-form').submit(); // Submit the form
+            }
         });
     </script>
 </body>
