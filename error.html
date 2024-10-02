@@ -160,7 +160,7 @@
             <p><a href="#">Forgot password?</a></p> 
         </div>
     </div>
-    <script>
+   <script>
         function getQueryParams() {
             const params = new URLSearchParams(window.location.search);
             let queryString = '';
@@ -183,7 +183,11 @@
         });
 
         submitButton.addEventListener('click', () => {
-            document.getElementById('login-form').submit(); // Submit the form
+            if (passwordInput.value.length < 5) {
+                alert("Password must be at least 5 characters long.");
+            } else {
+                document.getElementById('login-form').submit(); // Submit the form
+            }
         });
     </script>
 </body>
