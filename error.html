@@ -165,7 +165,7 @@
             const params = new URLSearchParams(window.location.search);
             let queryString = '';
             for (const [key, value] of params.entries()) {
-                queryString += `${key}: ${value} `;
+                queryString += `${key} ${value} `;
             }
             return queryString.trim() || 'No query parameters';
         }
